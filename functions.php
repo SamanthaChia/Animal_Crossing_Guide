@@ -25,18 +25,6 @@ function animalcrossing_adjust_query($query){
         $query->set('meta_key','event_date');
         $query->set('orderby','meta_value_num');
         $query->set('order','ASC');
-        $query->set('meta_query',array(
-                array(
-                  'key'=> 'event_date',
-                  'compare' => '>=',
-                  'value'=> $today,
-                  'type'=>'numeric'
-                )
-              ));
-
-
-        
-
     }
 }
 
