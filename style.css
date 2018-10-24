@@ -1834,11 +1834,9 @@ Version: 1.0
     background-color: rgba(255, 255, 255, .96);
     visibility: hidden;
     opacity: 0;
-    -webkit-transform: scale(1.09);
-            transform: scale(1.09);
-    transition: opacity .3s, visibility .3s, -webkit-transform .3s;
-    transition: opacity .3s, transform .3s, visibility .3s;
-    transition: opacity .3s, transform .3s, visibility .3s, -webkit-transform .3s;
+    transition-property: all;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
     box-sizing: border-box;
   }
   
@@ -1866,7 +1864,10 @@ Version: 1.0
   .search-overlay__icon {
     margin-right: 10px;
     font-size: 1.8rem;
-    color: #F95738;
+    color: #faa;
+    position:absolute;
+    top:22px;
+    left:20px;
   }
   
   @media (min-width: 960px) {
@@ -1878,7 +1879,7 @@ Version: 1.0
   
   .search-overlay--active {
     visibility: visible;
-    opacity: 1;
+    opacity: 0.9;
     -webkit-transform: scale(1);
             transform: scale(1);
   }
@@ -1900,7 +1901,7 @@ Version: 1.0
     cursor: pointer;
     transition: all .3s;
     background-color: #FFF;
-    color: #F95738;
+    color: #faa;
     line-height: .7;
   }
   
@@ -1929,16 +1930,17 @@ Version: 1.0
   }
   
   .search-term {
-    width: 75%;
+    width: 100%;
     box-sizing: border-box;
     border: none;
     padding: 15px 0;
+    padding-left:5%;
     margin: 0;
-    background-color: transparent;
-    font-size: 1rem;
+    background-color: #ddd;
+    font-size: 0.8rem;
     font-weight: 300;
     outline: none;
-    color: #F95738;
+    color: #475;
   
   }
   
@@ -1952,7 +1954,7 @@ Version: 1.0
   @media (min-width: 960px) {
   
     .search-term {
-      width: 80%;
+      width: 100%;
       font-size: 3rem;
     }
   }
