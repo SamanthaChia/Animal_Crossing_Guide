@@ -18,4 +18,28 @@ function animalcrossing_features(){
 
 add_action('after_setup_theme','animalcrossing_features');
 
+function animalcrossing_adjust_query($query){
+    //only if we are on the front end and is an event archive and to check if there is any custom query.
+    if(!is_admin() AND is_post_type_archive('event') AND $query->is_main_query()) {
+        $today = date('Ymd');
+        $query->set('meta_key','event_date');
+        $query->set('orderby','meta_value_num');
+        $query->set('order','ASC');
+        $query->set('meta_query',array(
+                array(
+                  'key'=> 'event_date',
+                  'compare' => '>=',
+                  'value'=> $today,
+                  'type'=>'numeric'
+                )
+              ));
+
+
+        
+
+    }
+}
+
+//right before getting the post, we ill get the query (function)
+add_action('pre_get_posts','animalcrossing_adjust_query');
 ?>
