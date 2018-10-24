@@ -1838,6 +1838,7 @@ Version: 1.0
     transition-duration: .2s;
     transition-timing-function: ease-in-out;
     box-sizing: border-box;
+    height:70%;
   }
   
   .search-overlay p {
