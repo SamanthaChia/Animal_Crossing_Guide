@@ -43,14 +43,24 @@ class Search {
     }
 
     getSearchResults(){
-        $.getJSON(animalCrossingData.root_url + '/wp-json/wp/v2/posts?search='+ this.searchField.val(), posts => {
+        //will run asynchronously
+        $.when(
+        $.getJSON(animalCrossingData.root_url + '/wp-json/wp/v2/posts?search='+ this.searchField.val()),
+        $.getJSON(animalCrossingData.root_url + '/wp-json/wp/v2/pages?search='+ this.searchField.val()) 
+        ).then((posts, pages) => {
+            var combinedResults = posts[0].concat(pages[0]);    
             this.resultsDiv.html(`
-            <h2 class="search-overlay__section-title">Look! We Found Something!</h2>
-            ${posts.length ? '<ul class="link-list min-list">' : '<p style="text-align:center;">Ah.. Nevermind its nothing. Try another keyword?</p>'}
-            ${posts.map(item => `<li><a href="${item.link}">${item.title.rendered}</a></li>`).join('')}
-            ${posts.length ? '</ul>' : `<div class="div-isabelle-worried"><img class="isabelle-worried" src="${animalCrossingData.root_url}/wp-content/themes/Animal_Crossing_Guide/images/isabelle-noresults.gif"></div>` }
+                <h2 class="search-overlay__section-title">Look! We Found Something!</h2>
+                ${combinedResults.length ? '<ul class="link-list min-list">' : '<p style="text-align:center;">Ah.. Nevermind its nothing. Try another keyword?</p>'}
+                ${combinedResults.map(item => `<li><a href="${item.link}">${item.title.rendered}</a></li>`).join('')}
+                ${combinedResults.length ? '</ul>' : `<div class="div-isabelle-worried"><img class="isabelle-worried" src="${animalCrossingData.root_url}/wp-content/themes/Animal_Crossing_Guide/images/isabelle-noresults.gif"></div>` }
             `);
             this.isLoadingVisible =false;
+        },
+        //when users have network error or something mess up the url to get the json.
+         () => {
+            this.resultsDiv.html(`<p style="text-align:center;">Oh No! There was an expected error, contact us for support !</p>
+            <div class="div-isabelle-worried"><img class="isabelle-worried" src="${animalCrossingData.root_url}/wp-content/themes/Animal_Crossing_Guide/images/isabelle-noresults.gif"></div>`);
         });
     }
 
