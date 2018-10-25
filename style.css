@@ -490,17 +490,12 @@ Version: 1.0
       -webkit-tap-highlight-color: transparent;
   }
 
-  .site-footer__inner {
-    border-top: 1px dotted #DEDEDE;
-  }
-  
   .slick-list
   {
       position: relative;
   
       display: block;
-      overflow: hidden;
-  
+      overflow: hidden;  
       margin: 0;
       padding: 0;
   }
@@ -704,17 +699,6 @@ Version: 1.0
     text-decoration:underline;
   }
   
-  @media (min-width: 530px) {
-  
-    .p-top-large {
-      padding-top: 3.5rem;
-    }
-  
-    .p-bottom-large {
-      padding-bottom: 3.5rem;
-    }
-  }
-  
   .no-margin {margin: 0}
   
   .nu {text-decoration: none}
@@ -771,14 +755,6 @@ Version: 1.0
   .page-section {
     padding-top: 1.6rem;
     padding-bottom: 1.6rem;
-  }
-  
-  @media (min-width: 530px) {
-  
-    .page-section {
-      padding-top: 3.5rem;
-      padding-bottom: 3.5rem;
-    }
   }
   
   .page-section--white {
@@ -838,16 +814,9 @@ Version: 1.0
     }
   }
   
-  .spinner-loader {
-    margin-top: 45px;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    border: 0.25rem solid rgba(0, 0, 0, 0.2);
-    border-top-color: black;
-    -webkit-animation: spin 1s infinite linear;
-            animation: spin 1s infinite linear;
-  }
+  /* .isabelle-loading { */
+    
+  /* } */
   
   .c-orange {color: #F95738}
   
@@ -986,13 +955,6 @@ Version: 1.0
     }
   }
   
-  /* Make Top WP Admin Bar Fixed on Mobile */
-  
-  @media screen and (max-width: 600px) {
-    #wpadminbar {
-      position: fixed;
-    }
-  }
   
   /* Seach Form */
   
@@ -1023,13 +985,7 @@ Version: 1.0
     font-family: 'Slabo 27px', serif;
     padding: 10px;
   }
-  
-  @media (min-width: 530px) {
-  
-    .search-form .s {
-      font-size: 1.4rem;
-    }
-  }
+
   
   .search-submit {
     color: #FFF;
@@ -1228,12 +1184,6 @@ Version: 1.0
     border-radius: 7px;
   }
   
-  @media (min-width: 530px) {
-  
-    .btn--large {
-      font-size: 1.9rem;
-    }
-  }
   
   .btn--inactive {
     background-color: transparent;
@@ -1303,20 +1253,8 @@ Version: 1.0
     top: 1px;
   }
   
-  @media (max-width: 400px) {
+
   
-    .note-title-field {
-      width: 100%;
-    }
-  }
-  
-  @media (min-width: 635px) {
-  
-    .note-title-field {
-      width: 65%;
-      font-size: 3.125rem;
-    }
-  }
   
   .note-body-field {
     color: #333;
@@ -1462,14 +1400,7 @@ Version: 1.0
     top: 6px;
     right: 16px;
   }
-  
-  @media (min-width: 530px) {
-  
-    .site-header__search-trigger {
-      top: 4px;
-      font-size: 1.4rem;
-    }
-  }
+ 
   
   @media (min-width: 960px) {
   
@@ -1487,14 +1418,7 @@ Version: 1.0
     top: 7px;
     right: 46px;
   }
-  
-  @media (min-width: 530px) {
-  
-    .site-header__menu-trigger {
-      top: 5px;
-      font-size: 1.4rem;
-    }
-  }
+
   
   @media (min-width: 960px) {
   
@@ -1532,7 +1456,7 @@ Version: 1.0
   
   .site-footer {
     padding: 2rem 0 3.5rem 0;
-    background-image: linear-gradient(#FFF, #ECECEC);
+    background-color:#fff;
   }
   
   .site-footer p {
