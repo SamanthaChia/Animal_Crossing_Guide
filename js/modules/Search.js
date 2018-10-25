@@ -10,6 +10,8 @@ class Search {
         this.searchOverlay = $(".search-overlay");
         this.searchField = $("#search-term");
         this.events();
+        this.isLoadingVisible = false;
+        this.previousValue;
         this.timer;
     }
 
@@ -17,19 +19,31 @@ class Search {
     events(){
         this.openButton.on("click", this.openOverlay.bind(this));
         this.closeButton.on("click",this.closeOverlay.bind(this));
-        this.searchField.on("keydown",this.searchtermLogic.bind(this));
+        this.searchField.on("keyup",this.searchtermLogic.bind(this));
         $(document).on("keyup", this.keyPressedFunction.bind(this));
     }
 
     //methods (function,action, etc)
     searchtermLogic(){
-        clearTimeout(this.timer);
-        this.resultsDiv.html('<div class="isabelle-loading"><img src="/images/isabelle-loading.gif" width="200" height="200"></div>');
-        this.timer = setTimeout(this.getSearchResults.bind(this),1000);
+        if(this.searchField.val() != this.previousValue) {
+            clearTimeout(this.timer);
+        if(this.searchField.val() ){
+            if(!this.isLoadingVisible){
+                this.resultsDiv.html('<div class="isabelle-loading"></div>');
+                this.isLoadingVisible = true;
+            }
+            this.timer = setTimeout(this.getSearchResults.bind(this),1000);
+            } else{
+                this.resultsDiv.html('');
+                this.isLoadingVisible = false;
+            }            
+        }
+        this.previousValue = this.searchField.val();
     }
 
     getSearchResults(){
         this.resultsDiv.html("Search results");
+        this.isLoadingVisible = false;
     }
 
     openOverlay(){
@@ -43,7 +57,7 @@ class Search {
     }
 
     keyPressedFunction(key){
-        if(key.keyCode == 83){
+        if(key.keyCode == 83 && !$("input","textarea").is(':focus')){
             this.openOverlay();
         }
         else if(key.keyCode ==27){
