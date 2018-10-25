@@ -4,6 +4,7 @@ class Search {
 
     // describe and create/initiate our object
     constructor() {
+        this.addSearchHTML();
         this.resultsDiv = $("#search-overlay__results");
         this.openButton =  $(".js-search-trigger");
         this.closeButton = $(".search-overlay__close");
@@ -32,7 +33,7 @@ class Search {
                 this.resultsDiv.html('<div class="isabelle-loading"></div>');
                 this.isLoadingVisible = true;
             }
-            this.timer = setTimeout(this.getSearchResults.bind(this),1000);
+            this.timer = setTimeout(this.getSearchResults.bind(this),750);
             } else{
                 this.resultsDiv.html('');
                 this.isLoadingVisible = false;
@@ -42,18 +43,28 @@ class Search {
     }
 
     getSearchResults(){
-        this.resultsDiv.html("Search results");
-        this.isLoadingVisible = false;
+        $.getJSON(animalCrossingData.root_url + '/wp-json/wp/v2/posts?search='+ this.searchField.val(), posts => {
+            this.resultsDiv.html(`
+            <h2 class="search-overlay__section-title">Look! We Found Something!</h2>
+            ${posts.length ? '<ul class="link-list min-list">' : '<p style="text-align:center;">Ah.. Nevermind its nothing. Try another keyword?</p>'}
+            ${posts.map(item => `<li><a href="${item.link}">${item.title.rendered}</a></li>`).join('')}
+            ${posts.length ? '</ul>' : `<div class="div-isabelle-worried"><img class="isabelle-worried" src="${animalCrossingData.root_url}/wp-content/themes/Animal_Crossing_Guide/images/isabelle-noresults.gif"></div>` }
+            `);
+            this.isLoadingVisible =false;
+        });
     }
 
     openOverlay(){
         this.searchOverlay.addClass("search-overlay--active");
+        setTimeout( () => this.searchField.focus() ,350);
         $("body").addClass("body-no-scroll");
     }
 
     closeOverlay(){
         this.searchOverlay.removeClass("search-overlay--active");
         $("body").removeClass("body-no-scroll");
+        this.searchField.val('');
+        this.resultsDiv.html('');
     }
 
     keyPressedFunction(key){
@@ -63,6 +74,26 @@ class Search {
         else if(key.keyCode ==27){
             this.closeOverlay();
         }
+    }
+
+    addSearchHTML(){
+        $("body").append(`
+        <div class="search-overlay">
+            <div clas="search-overlay__top">
+                    <div class="container">
+                    <i class="fa fa-search search-overlay__icon" aria-hidden="true"></i>
+                    <input type="text" class="search-term" placeholder="Looking for something? Let Isabelle help!" id="search-term">
+                    <i class="fa fa-window-close search-overlay__close" aria-hidden="true"></i>
+                    </div>
+            </div>
+            <div class="container">
+                <div id="search-overlay__results">
+                
+                </div>
+            </div>
+
+        </div>
+        `);
     }
 
 }

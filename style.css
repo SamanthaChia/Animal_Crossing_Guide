@@ -793,11 +793,21 @@ Version: 1.0
   }
   
   .isabelle-loading {
-    content:url("http://animal-crossing-guide.local/wp-content/themes/Animal_Crossing_Guide/images/isabelle-loading.gif");
+    content:url("http://animal-crossing-guide.local/wp-content/themes/Animal_Crossing_Guide/images/isabelle-loading1.gif");
     width:132px;
     height:164px;
     margin : 0 auto;
     margin-top:5%;
+  }
+
+  .div-isabelle-worried{
+    width:138px;
+    margin:0 auto;
+  }
+
+  .isabelle-worried{
+
+    height:162px;
   }
   
   .c-orange {color: #F95738}
@@ -1794,10 +1804,13 @@ Version: 1.0
   .search-overlay__section-title {
     margin: 30px 0 1px 0;
     font-weight: 400;
-    color: #0D3B66;
+    color: #F95738;
     font-size: 2rem;
     padding: 15px 0;
+    margin-left:40px;
+    margin-right:40px;
     border-bottom: 1px solid #CCC;
+    text-align:center;
   }
   
   .search-overlay__close {
@@ -2243,8 +2256,9 @@ Version: 1.0
   
   .link-list li {
     padding: 1rem 0;
+    padding-left:40px;
     font-size: 1.5rem;
-    border-bottom: 1px dotted #DEDEDE;
+    /* border-bottom: 1px dotted #DEDEDE; */
   }
   
   .search-overlay .link-list li {

@@ -5,6 +5,9 @@ function animalCrossingTheme_resources(){
     wp_enqueue_style('customfont', '//fonts.googleapis.com/css?family=Slabo+27px');
     wp_enqueue_style('fontawesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
     wp_enqueue_style('style2', get_stylesheet_uri());
+    wp_localize_script('js','animalCrossingData',array(
+        'root_url' => get_site_url()
+    ));
 }
 
 add_action('wp_enqueue_scripts','animalCrossingTheme_resources');
