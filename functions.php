@@ -1,5 +1,15 @@
 <?php
 
+function animalcrossing_custom_rest(){
+    register_rest_field('post','authorName', array(
+        'get_callback' => function(){ return get_the_author(); } 
+    ));
+
+    
+}
+
+add_action('rest_api_init','animalcrossing_custom_rest');
+
 function animalCrossingTheme_resources(){
     wp_enqueue_script('js', get_theme_file_uri('/js/scripts-bundled.js'),NULL,'1.0',true);
     wp_enqueue_style('customfont', '//fonts.googleapis.com/css?family=Slabo+27px');
