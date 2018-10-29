@@ -40,10 +40,6 @@
           wp_nav_menu(array(
             'theme_location' => 'headerNavLocation'
           )); ?>
-          <!-- <ul>
-            <li><a href="<?php echo site_url('/animal-crossing') ?>">Animal Crossing</a></li>
-            <li><a href="<?php echo site_url('/blog') ?>">Blog</a></li>
-          </ul> -->
         </nav>
         <div class="site-header__util">
           <a href="#" class="btn btn--small btn--orange float-left push-right">Login</a>
@@ -69,14 +65,19 @@
           wp_nav_menu(array(
             'theme_location' => 'headerNavLocation'
           )); ?>
-          <!-- <ul>
-            <li><a href="<?php echo site_url('/animal-crossing') ?>">Animal Crossing</a></li>
-            <li><a href="<?php echo site_url('/blog') ?>">Blog</a></li>
-          </ul> -->
         </nav>
         <div class="site-header__util">
-          <a href="#" class="btn btn--small btn--orange float-left push-right">Login</a>
-          <a href="#" class="btn btn--small  btn--dark-orange float-left">Sign Up</a>
+          <?php if(is_user_logged_in()){ ?>
+            <a href="<?php echo wp_logout_url(); ?>" class="btn btn--small  btn--dark-orange float-left btn--with-photo">
+            <span class="site-header__avatar"><?php echo get_avatar(get_current_user_id(),60); ?></span>
+            <span class="btn__text">Log Out</span>
+            </a>
+          <?php } else{ ?>
+    
+            <a href="#" class="btn btn--small btn--orange float-left push-right">Login</a>
+            <a href="<?php echo esc_url(site_url('/wp-signup.php')); ?>" class="btn btn--small  btn--dark-orange float-left">Sign Up</a>
+          <?php } ?>
+
           <span class="search-trigger js-search-trigger"><i class="fa fa-search" aria-hidden="true"></i></span>
         </div>
       </div>
