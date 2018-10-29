@@ -43,4 +43,23 @@ function animalcrossing_adjust_query($query){
 
 //right before getting the post, we ill get the query (function)
 add_action('pre_get_posts','animalcrossing_adjust_query');
+
+function redirectToHomepage(){
+    $currentUser = wp_Get_current_user();
+
+    if(count($currentUser-> roles) == 1 AND $currentUser->roles[0] == 'subscriber'){
+        wp_redirect(site_url('/'));
+        exit;
+    }
+}
+
+add_action('wp_loaded','subscriberNoAdminBar');
+
+function subscriberNoAdminBar(){
+    $currentUser = wp_Get_current_user();
+
+    if(count($currentUser-> roles) == 1 AND $currentUser->roles[0] == 'subscriber'){
+       show_admin_bar(false);
+    }
+}
 ?>
